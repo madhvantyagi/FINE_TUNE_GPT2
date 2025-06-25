@@ -30,16 +30,15 @@ To use the fine-tuned GPT-2 model, follow these steps:
 
 In the notebook, you will find a function called [`generate_lyrics`](lyrical-gpt2.ipynb) that takes a prompt and generates lyrics. Simply call this function with your desired prompt to see the model in action.
 
+
 ## Demonstration
 
 To showcase the capabilities of the fine-tuned model, we have included a demonstration video. You can view the video below to see how the model generates lyrics based on different prompts using the [`lyrical-gpt2.ipynb`](lyrical-gpt2.ipynb) notebook.
 
 <video controls width="640" height="360">
-  <source src="Sample.mp4" type="video/mp4">
+  <source src="Sample.mp4"
   Your browser does not support the video tag.
-</video>
-
- to see how the model generates lyrics based on different prompts using the [`lyrical-gpt2.ipynb`](lyrical-gpt2.ipynb) notebook.
+ </video>
 
 ## Conclusion
 
