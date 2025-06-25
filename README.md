@@ -1,62 +1,58 @@
 # Fine-Tuned GPT-2 Model for Song Lyrics Generation
 
-Welcome to the Fine-Tuned GPT-2 Model project! This repository contains a Jupyter notebook that implements a fine-tuned version of the GPT-2 model, specifically designed to generate song lyrics. By leveraging a collection of lyrics from various American singers, this model can produce creative and coherent song lyrics based on user-provided prompts.
+This repository contains a Jupyter notebook implementing a fine-tuned version of the GPT-2 model for generating song lyrics. The model was trained on a dataset of lyrics from various American singers to produce creative and coherent song lyrics based on user prompts.
 
 ## Overview
 
-The GPT-2 model, developed by OpenAI, is a state-of-the-art language model that has been widely used for various natural language processing tasks. In this project, we have fine-tuned the GPT-2 model on a dataset of American singers' song lyrics. The training process involved preprocessing the lyrics, training the model, and evaluating its performance. The result is a model capable of generating unique and contextually relevant lyrics.
+This project leverages the GPT-2 language model, fine-tuned specifically for the task of lyric generation. By training on a diverse collection of American song lyrics, the model has learned patterns, styles, and structures common in popular music, enabling it to generate unique and contextually relevant lyrics.
 
 ## Dataset
 
-The model was trained on a comprehensive dataset comprising song lyrics from a diverse collection of American singers. This dataset was curated to expose the model to various lyrical styles, themes, and structures prevalent in American popular music. The raw lyrics were processed and tokenized into numerical representations suitable for the GPT-2 architecture. The tokenized data is stored in the `combined_artists_tokenized.csv` file.
+The model was trained on a dataset compiled from song lyrics by a variety of American singers. This dataset was processed and tokenized into a format suitable for the GPT-2 architecture. The tokenized data is stored in the `combined_artists_tokenized.csv` file.
 
 ## Training Process
 
-The fine-tuning process involved adapting a pre-trained GPT-2 model (`gpt2`) to the specific task of lyric generation using the collected dataset. Key aspects of the training included:
+The fine-tuning process involved adapting a pre-trained GPT-2 model (`gpt2`) using the collected lyric dataset. Key steps included:
 
-*   **Data Loading and Preprocessing**: Lyrics were loaded from the CSV, converted from token strings to lists, and prepared into a custom PyTorch Dataset (`LyricsDataset`). Each lyric sequence was padded or truncated to a fixed `max_length` (1024 tokens).
-*   **Model and Tokenizer**: The standard `gpt2` model and tokenizer from the `transformers` library were used.
-*   **Training Configuration**: The model was trained using the AdamW optimizer with a linear learning rate scheduler. Training was performed for 3 epochs with a batch size of 4.
-*   **Hardware**: Training was configured to utilize a GPU if available, falling back to CPU otherwise.
-*   **Model Saving**: The model and tokenizer were saved periodically based on validation loss to the `fine_tuned_gpt2_lyrics` directory.
+*   **Data Preparation**: Lyrics were loaded, converted from token strings to lists, and organized into a PyTorch Dataset (`LyricsDataset`). Sequences were padded or truncated to a fixed length (1024 tokens).
+*   **Model and Tokenizer**: The standard `gpt2` model and tokenizer from the `transformers` library were utilized.
+*   **Configuration**: Training was performed using the AdamW optimizer and a linear learning rate scheduler over 3 epochs with a batch size of 4.
+*   **Hardware**: Training was configured to use a GPU if available, otherwise defaulting to CPU.
+*   **Model Saving**: The fine-tuned model and tokenizer were saved based on validation loss to the `fine_tuned_gpt2_lyrics` directory.
 
 ## How to Use the Model
 
-To generate song lyrics using the fine-tuned model, follow these steps:
+To generate song lyrics using the fine-tuned model via the provided Jupyter notebook:
 
-1.  **Clone the Repository**: Download or clone this repository to your local machine.
-2.  **Install Required Libraries**: Ensure you have the necessary libraries installed. You can do this by running:
+1.  **Clone the Repository**: Obtain a copy of this repository.
+2.  **Install Dependencies**: Install the required libraries. A `requirements.txt` file listing dependencies (e.g., `pandas`, `numpy`, `torch`, `transformers`, `tqdm`, `sklearn`) may be needed.
     ```bash
     pip install -r requirements.txt
     ```
-    (Note: You may need to create a `requirements.txt` file listing the dependencies like `pandas`, `numpy`, `torch`, `transformers`, `tqdm`, `sklearn`).
-3.  **Open the Jupyter Notebook**: Launch Jupyter Notebook or JupyterLab and open the [`lyrical-gpt2.ipynb`](lyrical-gpt2.ipynb) file located in the `FINE_TUNE` directory.
-4.  **Run the Notebook Cells**: Execute the cells sequentially.
-    *   The initial cells load libraries, set up the device, load and preprocess the dataset.
-    *   The training cells (Epoch 1, 2, 3) will train the model. This step can take a significant amount of time depending on your hardware. You can skip these if you have already trained the model and have the saved `fine_tuned_gpt2_lyrics` directory.
-    *   The final cells load the fine-tuned model and tokenizer and provide a function (`generate_lyrics`) to generate lyrics based on a prompt.
-5.  **Generate Lyrics**: In the final cell block, you will be prompted to "Enter your song lyrics : ". Type a starting phrase or line and press Enter. The model will generate a continuation of the lyrics.
+3.  **Open the Notebook**: Launch Jupyter Notebook or JupyterLab and open `lyrical-gpt2.ipynb` in the `FINE_TUNE` directory.
+4.  **Execute Cells**: Run the notebook cells sequentially.
+    *   Initial cells handle setup, data loading, and preprocessing.
+    *   Training cells (Epochs 1-3) can be run to train the model. This step is time-consuming. If the `fine_tuned_gpt2_lyrics` directory exists from a previous run, these cells can be skipped.
+    *   Final cells load the saved model and tokenizer and provide the lyric generation functionality.
+5.  **Generate Lyrics**: In the final cell block, you will be prompted to enter a starting phrase. The model will then generate a continuation of the lyrics.
 
 ## Demonstration
 
-To showcase the capabilities of the fine-tuned model, a demonstration video (`Sample.mp4`) is included in this repository.
+A demonstration video (`Sample.mp4`) is included in this repository to showcase the model's lyric generation capabilities.
 
-**Note on Video Display on GitHub:** Standard Markdown on platforms like GitHub does not support embedding video previews directly using HTML `<video>` tags for security reasons. While the HTML tag works in local Markdown previews (like in VS Code), it will likely be stripped or ignored when viewed on the GitHub website.
+**Note on Video Display on GitHub:** Direct embedding of video files using HTML `<video>` tags is generally not supported on the GitHub website for security reasons.
 
-To view the demonstration video on GitHub, you can:
+To view the demonstration video:
 
-*   **Download the video**: Click on the `Sample.mp4` file in the repository file list to download and play it locally.
-*   **Link to a hosting service**: If you upload the video to a service like YouTube or Vimeo, you can embed it using their provided embed code or a standard Markdown link to the video page.
-*   **Provide a direct link**: The current README includes a direct link to the file: `[Sample.mp4](Sample.mp4)`. Users can click this link to download or view the video depending on their browser settings.
+*   **Download**: Click on the `Sample.mp4` file in the repository file list to download and play it locally.
+*   **Direct Link**: Access the video directly via this link: [Sample.mp4](Sample.mp4).
 
-## Other Information
+Below is a screenshot illustrating the lyric generation process within the Jupyter notebook:
 
-*   **Base Model**: The project uses the standard `gpt2` model from the Hugging Face `transformers` library.
-*   **Training Data**: The model was fine-tuned on a custom dataset of American singers' song lyrics.
-*   **Output Directory**: The fine-tuned model and tokenizer are saved to the `fine_tuned_gpt2_lyrics` directory.
+![Screenshot of notebook running lyric generation](demo.png)
 
 ## Conclusion
 
-This fine-tuned GPT-2 model represents a significant step in the realm of automated lyric generation. We hope you find this project useful and inspiring for your own creative endeavors. Feel free to experiment with the model and generate your own unique song lyrics!
+This fine-tuned GPT-2 model provides a tool for automated song lyric generation, trained on a dataset of American singers' lyrics. We encourage users to experiment with the model and explore its creative potential.
 
-For any questions or feedback, please feel free to reach out. Happy lyric generating!
+For questions or feedback, please feel free to reach out.
